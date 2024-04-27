@@ -3,8 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nya Nya Subscription Form</title>
-<link rel="stylesheet" href="styles.css">
+<title>Subscription Form</title>
+<style>
+ body {
+    font-family: Arial, sans-serif;
+    font-style: italic;
+    margin: 0;
+    padding: 0;
+    background-image: url('background.png'); /* Link to your image file */
+    background-size: cover; /* Cover the entire page */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    color: white; /* Set text color to white */
+}
+  
+  
+  .container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 10px;
+  }
+  
+  input, select {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #0300b3;
+  }
+
+#loading, #thankYou {
+  font-size: 16px;
+  color: #333;
+  margin-top: 20px;
+}
+
+</style>
 </head>
 <body>
 <div class="container">
@@ -13,15 +76,47 @@
     <input type="text" id="name" placeholder="Your Name">
     <input type="email" id="email" placeholder="Your Email">
     <select id="subscriptionType">
-      <option value="bronze">Bronze Subscription (4.99$)</option>
-      <option value="silver">Silver Subscription (9.99$)</option>
-      <option value="gold">Gold Subscription (49.99$)</option>
+      <option value="monthly">Bronze Subscription (4.99$)</option>
+      <option value="yearly">Silver Subscription (9.99$)</option>
+      <option value="garly">Gold Subscription (49.99$)</option>
     </select>
     <button type="submit">Subscribe</button>
   </form>
   <div id="loading" style="display:none;">Loading...</div>
-  <div id="thankYou" style="display:none;">Thank you for ordering the Nya Nya subscription!</div>
+  <div id="thankYou" style="display:none;"></div>
+  <div id="ipAddress" style="display:none;">Your IP address is: <span id="ip"></span></div>
 </div>
-<script src="script.js"></script>
+
+<script>
+document.getElementById('subscriptionForm').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent the form from submitting normally
+  document.getElementById('subscriptionForm').style.display = 'none';
+  document.getElementById('loading').style.display = 'block';
+
+  fetch('https://api.ipify.org?format=json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok: ' + response.statusText);
+      }
+      return response.json();
+    })
+    .then(data => {
+      const ipAddress = data.ip;
+      setTimeout(() => {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('thankYou').textContent = 'Thank you for ordering the subscription!';
+        document.getElementById('thankYou').style.display = 'block';
+        document.getElementById('ipAddress').style.display = 'block';
+        document.getElementById('ip').textContent = ipAddress;
+      }, 2500);
+    })
+    .catch(error => {
+      console.error('Error fetching IP:', error);
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('thankYou').textContent = 'Failed to fetch IP address. Please try again.';
+      document.getElementById('thankYou').style.display = 'block';
+    });
+});
+</script>
 </body>
 </html>
