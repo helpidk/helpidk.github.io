@@ -1,122 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Subscription Form</title>
-<style>
- body {
-    font-family: Arial, sans-serif;
-    font-style: italic;
-    margin: 0;
-    padding: 0;
-    background-image: url('background.png'); /* Link to your image file */
-    background-size: cover; /* Cover the entire page */
-    background-position: center; /* Center the background image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    color: white; /* Set text color to white */
-}
-  
-  
-  .container {
-    max-width: 500px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  h1 {
-    text-align: center;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  label {
-    margin-bottom: 10px;
-  }
-  
-  input, select {
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  button:hover {
-    background-color: #0300b3;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UNDER CONSTRUCTION!!!!</title>
+  <style>
+    /* Reset margins and ensure full document height */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
+    }
 
-#loading, #thankYou {
-  font-size: 16px;
-  color: #333;
-  margin-top: 20px;
-}
-
-</style>
+    /* Container for the full-screen background image */
+    .fullscreen-bg {
+      background-image: url('VERY COOL WEBSITE.PNG'); /* Replace with your image link */
+      height: 100vh;
+      width: 100vw;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      
+      /* Optional: Centers text content inside the image container */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-family: sans-serif;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-  <form id="subscriptionForm">
-    <h1>Order Nya Nya Subscription</h1>
-    <input type="text" id="name" placeholder="Your Name">
-    <input type="email" id="email" placeholder="Your Email">
-    <select id="subscriptionType">
-      <option value="monthly">Bronze Subscription (4.99$)</option>
-      <option value="yearly">Silver Subscription (9.99$)</option>
-      <option value="garly">Gold Subscription (49.99$)</option>
-    </select>
-    <button type="submit">Subscribe</button>
-  </form>
-  <div id="loading" style="display:none;">Loading...</div>
-  <div id="thankYou" style="display:none;"></div>
-  <div id="ipAddress" style="display:none;">Your IP address is: <span id="ip"></span></div>
-</div>
 
-<script>
-document.getElementById('subscriptionForm').addEventListener('submit', function(event) {
-  event.preventDefault(); // Prevent the form from submitting normally
-  document.getElementById('subscriptionForm').style.display = 'none';
-  document.getElementById('loading').style.display = 'block';
+  <!-- The full screen section -->
+  <div class="fullscreen-bg">
 
-  fetch('https://api.ipify.org?format=json')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok: ' + response.statusText);
-      }
-      return response.json();
-    })
-    .then(data => {
-      const ipAddress = data.ip;
-      setTimeout(() => {
-        document.getElementById('loading').style.display = 'none';
-        document.getElementById('thankYou').textContent = 'Thank you for ordering the subscription!';
-        document.getElementById('thankYou').style.display = 'block';
-        document.getElementById('ipAddress').style.display = 'block';
-        document.getElementById('ip').textContent = ipAddress;
-      }, 2500);
-    })
-    .catch(error => {
-      console.error('Error fetching IP:', error);
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('thankYou').textContent = 'Failed to fetch IP address. Please try again.';
-      document.getElementById('thankYou').style.display = 'block';
-    });
-});
-</script>
+  </div>
+
 </body>
 </html>
