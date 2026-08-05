@@ -1,44 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UNDER CONSTRUCTION!!!!</title>
-  <style>
-    /* Reset margins and ensure full document height */
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    /* Container for the full-screen background image */
-    .fullscreen-bg {
-      background-image: url('VERY COOL WEBSITE.png'); /* Replace with your image link */
-      height: 100vh;
-      width: 100vw;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      
-      /* Optional: Centers text content inside the image container */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      font-family: sans-serif;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-    }
-  </style>
+<title>STICKSITE OF DOOM AND DESPAIR</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.55);
+    z-index:-1;
+}
+
+.container{
+    text-align:center;
+    max-width:1000px;
+    width:100%;
+    padding:40px;
+}
+
+h1{
+    font-size:2.5rem;
+    margin-bottom:30px;
+    text-shadow:4px 4px #000;
+}
+
+p{
+    line-height:2;
+    font-size:0.75rem;
+    margin-bottom:30px;
+}
+
+.video-list{
+    display:flex;
+    gap:20px;
+    overflow-x:auto;
+    padding:10px;
+    scroll-behavior:smooth;
+}
+
+.video-list::-webkit-scrollbar{
+    height:10px;
+}
+
+.video-list::-webkit-scrollbar-thumb{
+    background:white;
+}
+
+.video-card{
+    flex:0 0 auto;
+    width:320px;
+}
+
+.video-card video{
+    width:100%;
+    border:4px solid white;
+    display:block;
+}
+
+
+body{
+    font-family:'Press Start 2P', cursive;
+    background:url("background.png") center center/cover no-repeat fixed;
+    color:white;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:auto; /* changed from hidden */
+}
+
+.video-title{
+    margin-top:10px;
+    margin-bottom:25px; /* adds space before MORE INFO */
+    font-size:0.6rem;
+}
+
+.description{
+    text-align:left;
+    font-size:0.55rem;
+    line-height:1.8;
+}
+
+.description summary{
+    cursor:pointer;
+    padding:10px;
+    border:2px solid white;
+    background:rgba(0,0,0,0.5);
+    margin-bottom:15px;
+}
+
+.description p{
+    margin-top:10px;
+    padding:15px;
+    background:rgba(0,0,0,0.6);
+    line-height:2;
+    overflow-wrap:break-word;
+}
+
+a{
+    color:#7fdbff; /* lighter cyan */
+    text-decoration:none;
+}
+
+a:hover{
+    color:white;
+    text-decoration:underline;
+}
+</style>
 </head>
+
 <body>
 
-  <!-- The full screen section -->
-  <div class="fullscreen-bg">
+<div class="overlay"></div>
 
-  </div>
+<div class="container">
+    <h1>STICKSITE!!!</h1>
+
+    <p>
+        I am THE stickman.<br>
+        here are some of my projects and stuff (currently one only rn):
+    </p>
+
+    <div class="video-list">
+
+        <div class="video-card">
+            <video controls poster="thumb1.png">
+                <source src="video1.mp4" type="video/mp4">
+            </video>
+
+            <div class="video-title">
+                WazanOS
+            </div>
+
+            <details class="description">
+                <summary>MORE INFO</summary>
+                <p>
+                    My first proper OS project.
+                    Made with hopes and dreams. (undertale refrence?)
+                    You can download the ISO here: <a href="falastinos.iso" download>cool iso thing</a> (anti-viruses hate this one simple trick)
+                    Use QEMU to run. (but VMWare and VirtualBox <i>should</i> work)
+                </p>
+            </details>
+        </div>
+
+        <div class="video-card">
+            <video controls poster="thumb2.png">
+                <source src="video2.mp4" type="video/mp4">
+            </video>
+            <div class="video-title">Nothing yet...</div>
+        </div>
+
+        <div class="video-card">
+            <video controls poster="thumb3.png">
+                <source src="video3.mp4" type="video/mp4">
+            </video>
+            <div class="video-title">Nothing yet...</div>
+        </div>
+
+        <div class="video-card">
+            <video controls poster="thumb4.png">
+                <source src="video4.mp4" type="video/mp4">
+            </video>
+            <div class="video-title">Nothing yet...</div>
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 </html>
+
