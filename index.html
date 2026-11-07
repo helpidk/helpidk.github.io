@@ -134,6 +134,67 @@ a:hover{
     width:300px;
     max-height:100vh;
     backdrop-filter:blur(5px);
+    z-index:100;
+}
+
+/* Mobile sidebar - moves to top of project section */
+@media (max-width: 768px) {
+    .sidebar{
+        position:relative;
+        left:auto;
+        top:auto;
+        height:auto;
+        width:100%;
+        max-height:none;
+        margin:0 0 20px 0;
+        border-radius:10px;
+    }
+    
+    .sidebar.collapsed .sidebar-content {
+        display:none;
+    }
+    
+    .sidebar-content{
+        overflow:hidden;
+        transition:max-height 0.4s ease, opacity 0.3s ease;
+    }
+    
+    .sidebar-toggle{
+        display:none;
+        background:rgba(127,219,255,0.2);
+        border:2px solid #7fdbff;
+        border-radius:8px;
+        color:white;
+        padding:10px 15px;
+        font-family:'Press Start 2P', cursive;
+        font-size:0.7rem;
+        cursor:pointer;
+        margin-bottom:10px;
+        width:100%;
+        text-align:left;
+    }
+    
+    .sidebar-toggle:hover{
+        background:rgba(127,219,255,0.3);
+    }
+    
+    .content-area{
+        margin-left:0;
+        padding-left:0;
+        max-width:100%;
+    }
+    
+    .project-section{
+        margin-left:0;
+    }
+    
+    .video-list{
+        flex-direction:column;
+    }
+    
+    .video-card{
+        width:100%;
+    }
 }
 
 .sidebar h2{
@@ -266,10 +327,12 @@ a:hover{
 <div class="overlay"></div>
 
 <div class="container">
-    <h1 style="display:block;margin-bottom:5px;">My Projects</h1>
+    <h1 style="display:block;margin-bottom:20px;">My Projects</h1>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">☰ Show Bio</div>
+        <div class="sidebar-content">
         <h2>about me/bio</h2>
         <p style="font-size:0.65rem;line-height:1.6;text-align:left;background:rgba(0,0,0,0.6);padding:15px;border-radius:8px;margin-bottom:20px;">
             hi! my name is saif, but i go by therandomstickman online. i've always loved technology, and i love building projects aswell!
@@ -285,6 +348,7 @@ a:hover{
         <p style="font-size:0.65rem;line-height:1.6;text-align:left;background:rgba(0,0,0,0.6);padding:15px;border-radius:8px;margin-bottom:20px;">
             i still love minecraft to this day, and i also like games like undertale and deltarune!
         </p>
+        </div>
     </div>
 </div>
 
@@ -368,6 +432,55 @@ function toggleInfo(card){
     info.classList.toggle('open');
     arrow.textContent = info.classList.contains('open') ? '▼' : '▶';
 }
+
+function toggleSidebar(){
+    const sidebar = document.getElementById('sidebar');
+    const toggle = document.getElementById('sidebarToggle');
+    const content = sidebar.querySelector('.sidebar-content');
+    const isCollapsed = sidebar.classList.contains('collapsed');
+    
+    if(isCollapsed){
+        // Show bio with animation
+        sidebar.classList.remove('collapsed');
+        toggle.textContent = '✕ Hide Bio';
+        // Trigger reflow to restart animation
+        content.style.maxHeight = '0px';
+        requestAnimationFrame(() => {
+            content.style.maxHeight = content.scrollHeight + 'px';
+        });
+    } else {
+        // Hide bio with animation
+        content.style.maxHeight = content.scrollHeight + 'px';
+        requestAnimationFrame(() => {
+            content.style.maxHeight = '0px';
+            content.style.opacity = '0';
+        });
+        setTimeout(() => {
+            sidebar.classList.add('collapsed');
+            toggle.textContent = '☰ Show Bio';
+            content.style.opacity = '1';
+        }, 300);
+    }
+}
+
+// Detect mobile screen size and adjust layout
+function checkMobileLayout(){
+    const isMobile = window.innerWidth <= 768;
+    const sidebar = document.getElementById('sidebar');
+    
+    if(isMobile){
+        sidebar.classList.add('mobile-mode');
+        // Sidebar is already positioned via CSS media query
+    } else {
+        sidebar.classList.remove('mobile-mode');
+        sidebar.classList.remove('collapsed');
+        document.getElementById('sidebarToggle').textContent = '☰ Show Bio';
+    }
+}
+
+// Run on load and resize
+checkMobileLayout();
+window.addEventListener('resize', checkMobileLayout);
 </script>
 
 </body>
