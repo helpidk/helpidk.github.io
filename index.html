@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>STICKSITE OF DOOM AND DESPAIR</title>
+<title>My Projects</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 
 <style>
 *{
@@ -23,13 +24,13 @@
     z-index:-1;
 }
 
-.container{
-    text-align:center;
-    max-width:1000px;
-    width:100%;
-    padding:40px;
-}
 
+.container{
+    width:100%;
+    padding:20px;
+    max-width:1200px;
+    margin:0 auto;
+}
 h1{
     font-size:2.5rem;
     margin-bottom:30px;
@@ -75,15 +76,15 @@ body{
     background:url("background.png") center center/cover no-repeat fixed;
     color:white;
     min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    overflow:auto; /* changed from hidden */
+    margin:0;
+    padding:20px;
+    overflow:auto;
 }
+
 
 .video-title{
     margin-top:10px;
-    margin-bottom:25px; /* adds space before MORE INFO */
+    margin-bottom:25px;
     font-size:0.6rem;
 }
 
@@ -110,13 +111,152 @@ body{
 }
 
 a{
-    color:#7fdbff; /* lighter cyan */
+    color:#7fdbff;
     text-decoration:none;
 }
 
 a:hover{
     color:white;
     text-decoration:underline;
+}
+
+/* Sidebar styles */
+.sidebar{
+    position:fixed;
+    left:20px;
+    top:20px;
+    height:calc(100vh - 40px);
+    overflow-y:auto;
+    background:rgba(0,0,0,0.8);
+    border:2px solid white;
+    border-radius:15px;
+    padding:20px;
+    width:300px;
+    max-height:100vh;
+    backdrop-filter:blur(5px);
+}
+
+.sidebar h2{
+    font-size:1rem;
+    margin-bottom:20px;
+    text-shadow:1px 1px #000;
+    color:#7fdbff;
+}
+
+.sidebar-item{
+    margin-bottom:15px;
+}
+
+.sidebar-item label{
+    display:block;
+    font-size:0.65rem;
+    margin-bottom:5px;
+    color:#c0c0c0;
+}
+
+.sidebar-item input{
+    width:100%;
+    padding:8px;
+    background:rgba(255,255,255,0.1);
+    border:1px solid #7fdbff;
+    border-radius:5px;
+    color:white;
+    font-family:'Press Start 2P', cursive;
+    font-size:0.6rem;
+}
+
+.sidebar-item select{
+    width:100%;
+    padding:8px;
+    background:rgba(255,255,255,0.1);
+    border:1px solid #7fdbff;
+    border-radius:5px;
+    color:white;
+    font-family:'Press Start 2P', cursive;
+    font-size:0.6rem;
+}
+
+.content-area{
+    margin-left:350px;
+    padding-left:0;
+    text-align:left;
+    width:auto;
+    max-width:calc(100% - 370px);
+}
+
+.content-area p{
+    text-align:left;
+    font-size:0.75rem;
+    line-height:2;
+    margin-bottom:20px;
+    padding-left:0;
+}
+
+/* Project card styles */
+.project-list{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.project-card{
+    background:rgba(0,0,0,0.7);
+    border:2px solid white;
+    border-radius:10px;
+    padding:15px;
+    cursor:pointer;
+    transition:border-color 0.2s, box-shadow 0.2s;
+}
+
+.project-card:hover{
+    border-color:#7fdbff;
+    box-shadow:0 0 10px rgba(127,219,255,0.3);
+}
+
+.project-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+.project-title{
+    font-size:0.8rem;
+    text-shadow:2px 2px #000;
+    margin:0;
+}
+
+.project-arrow{
+    font-size:0.7rem;
+    color:#7fdbff;
+    transition:transform 0.2s;
+}
+
+.project-info{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.3s ease;
+}
+
+.project-info.open{
+    max-height:300px;
+}
+
+.project-desc{
+    font-size:0.65rem;
+    line-height:1.8;
+    margin-bottom:10px;
+    color:#c0c0c0;
+}
+
+.project-meta{
+    font-size:0.6rem;
+    line-height:1.8;
+    color:#7fdbff;
+}
+
+.meta-label{
+    color:white;
 }
 </style>
 </head>
@@ -126,60 +266,109 @@ a:hover{
 <div class="overlay"></div>
 
 <div class="container">
-    <h1>STICKSITE!!!</h1>
+    <h1 style="display:block;margin-bottom:5px;">My Projects</h1>
 
-    <p>
-        I am THE stickman.<br>
-        here are some of my projects and stuff (currently one only rn):
-    </p>
-
-    <div class="video-list">
-
-        <div class="video-card">
-            <video controls poster="thumb1.png">
-                <source src="video1.mp4" type="video/mp4">
-            </video>
-
-            <div class="video-title">
-                WazanOS
-            </div>
-
-            <details class="description">
-                <summary>MORE INFO</summary>
-                <p>
-                    My first proper OS project.
-                    Made with hopes and dreams. (undertale refrence?)
-                    You can download the ISO here: <a href="falastinos.iso" download>cool iso thing</a> (anti-viruses hate this one simple trick)
-                    Use QEMU to run. (but VMWare and VirtualBox <i>should</i> work)
-                </p>
-            </details>
-        </div>
-
-        <div class="video-card">
-            <video controls poster="thumb2.png">
-                <source src="video2.mp4" type="video/mp4">
-            </video>
-            <div class="video-title">Nothing yet...</div>
-        </div>
-
-        <div class="video-card">
-            <video controls poster="thumb3.png">
-                <source src="video3.mp4" type="video/mp4">
-            </video>
-            <div class="video-title">Nothing yet...</div>
-        </div>
-
-        <div class="video-card">
-            <video controls poster="thumb4.png">
-                <source src="video4.mp4" type="video/mp4">
-            </video>
-            <div class="video-title">Nothing yet...</div>
-        </div>
-
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>about me/bio</h2>
+        <p style="font-size:0.65rem;line-height:1.6;text-align:left;background:rgba(0,0,0,0.6);padding:15px;border-radius:8px;margin-bottom:20px;">
+            hi! my name is saif, but i go by therandomstickman online. i've always loved technology, and i love building projects aswell!
+        </p>
+        <p style="font-size:0.65rem;line-height:1.6;text-align:left;background:rgba(0,0,0,0.6);padding:15px;border-radius:8px;margin-bottom:20px;">
+            i also like chess, speedcubing (though i haven't really done it in a while), and drone racing!
+        </p>
+        <p style="font-size:0.65rem;line-height:1.6;text-align:left;background:rgba(0,0,0,0.6);padding:15px;border-radius:8px;margin-bottom:20px;">
+            my first exposure to tech was on an android tablet, and i got hooked on minecraft.
+        <p style="font-size:0.65rem;line-height:1.6;text-align:left;background:rgba(0,0,0,0.6);padding:15px;border-radius:8px;margin-bottom:20px;">
+            i kept playing the game and i wanted to create mods for the game, so i looked up how, and that's what brought me to the world of programming!
+        </p>
+        <p style="font-size:0.65rem;line-height:1.6;text-align:left;background:rgba(0,0,0,0.6);padding:15px;border-radius:8px;margin-bottom:20px;">
+            i still love minecraft to this day, and i also like games like undertale and deltarune!
+        </p>
     </div>
-
 </div>
+
+<div class="project-section">
+    <h2 style="font-size:1.2rem;margin-bottom:20px;text-shadow:2px 2px #000;color:#7fdbff;">Projects</h2>
+    <div class="project-list">
+        <div class="project-card" onclick="toggleInfo(this)">
+            <div class="project-header">
+                <h3 class="project-title">This Website</h3>
+                <span class="project-arrow">▶</span>
+            </div>
+            <div class="project-info">
+                <p class="project-desc">
+                    That's right, the first project is this website! I call this a project not neccesarily due to the website itself, but due to setting up the domain.
+                    I managed to get a free domain from DigitalPlat, but the reason it was free is because it's not the .com or .net domain extensions you're used to. (called TLDs, top-level domain)
+                    The domain extension is .qd.je. (called SLDs, second-level domains)
+                    After I had acquired the domain, (wazan.qd.je) it was time to find somewhere to host the website, because remember, DigitalPlat only gave me the domain, nothing else.
+                    Luckily, I remembered I had a test website on GitHub Pages, a website hoster.
+                    Now, the hard part comes in. I had to find a way to link GitHub Pages to the domain I had registered. (DNS, for the technical folks)
+                    For this I used FreeDNS, a website made in 2001 to handle DNS records. After hooking everything up, the website kind of just sat there for a while until I decided to do something with it and create this website.
+                </p>
+                <p class="project-meta">
+                    <span class="meta-label">Tech:</span> HTML, CSS, JS<br>
+                    <span class="meta-label">Year:</span> 2026<br>
+                    <span class="meta-label">Link:</span> <a href="https://domain.digitalplat.org/">DigitalPlat</a>, <a href="afraid.org">FreeDNS</a>, <a href="https://github.com/helpidk/helpidk.github.io">GitHub Repo (the one behind this website)</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="project-card" onclick="toggleInfo(this)">
+            <div class="project-header">
+                <h3 class="project-title">The Greatest OS Of All Time</h3>
+                <span class="project-arrow">▶</span>
+            </div>
+            <div class="project-info">
+                <p class="project-desc">
+                    I built an OS from the ground up, no Linux base, not even FreeBSD. The OS can currently:
+                </p>
+                <ol class="project-desc">
+                    <li>Access the web (limited, although it works)</li>
+                    <li>Play a very run down version of DOOM</li>
+                    <li>Save files between reboots (persistent storage)</li>
+                </ol>
+                <p class="project-desc">
+                    And it also has a fully working file explorer and terminal! (and a not-so-good file editor)
+                    No github repo yet though.
+                    (Also to run it you have to use this quite specific command: qemu-system-i386 -cdrom falastinos.iso -m 32 -machine pc -nodefaults -vga std -drive file=falastinos.qcow2,format=qcow2,index=0,media=disk -netdev user,id=net0,hostfwd=tcp::5555-:23 -device e1000,netdev=net0)
+                </p>
+
+                <p class="project-meta">
+                    <span class="meta-label">Tech:</span> C, Assembly<br>
+                    <span class="meta-label">Year:</span> 2026<br>
+                    <span class="meta-label">Link:</span> <a href="falastinos.iso" download>ISO File Download</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="project-card" onclick="toggleInfo(this)">
+            <div class="project-header">
+                <h3 class="project-title">Nothing yet...</h3>
+                <span class="project-arrow">▶</span>
+            </div>
+            <div class="project-info">
+                <p class="project-desc">
+                    I will make more projects soon!
+                </p>
+                <p class="project-meta">
+                    <span class="meta-label">Tech:</span> Nothing.<br>
+                    <span class="meta-label">Year:</span> Why are you looking here?<br>
+                    <span class="meta-label">Link:</span> <a href="#"> This link leads nowhere.</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleInfo(card){
+    const info = card.querySelector('.project-info');
+    const arrow = card.querySelector('.project-arrow');
+    info.classList.toggle('open');
+    arrow.textContent = info.classList.contains('open') ? '▼' : '▶';
+}
+</script>
 
 </body>
 </html>
-
